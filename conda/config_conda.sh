@@ -1,0 +1,1 @@
+cp ./.condarc ~/.condarc
