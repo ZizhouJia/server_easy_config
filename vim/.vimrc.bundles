@@ -4,7 +4,6 @@ end
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Yggdroot/indentLine'
