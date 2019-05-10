@@ -6,6 +6,7 @@ conda install -y scikit-learn
 conda install -y matplotlib
 conda install -y opencv
 conda install -y h5py
+conda install -y jedi
 pip install nvidia-ml-py
 pip install tensorboardX
 pip install torchvision
@@ -19,6 +20,7 @@ conda install -y scikit-learn
 conda install -y matplotlib
 conda install -y opencv
 conda install -y h5py
+conda install -y jedi
 pip insall nvidia-ml-py3
 pip install tensorboardX
 pip install torchvision
