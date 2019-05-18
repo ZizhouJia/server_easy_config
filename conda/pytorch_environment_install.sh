@@ -2,7 +2,8 @@ conda create -y -n python27jzz python=2.7
 conda activate python27jzz
 pip install tensorflow 
 pip install  tensorboard
-pip install scikit-learn
+pip install sklearn
+pip install scikit-image
 pip install matplotlib
 pip install opencv-python
 pip install opencv-contrib-python
@@ -18,7 +19,8 @@ conda create -y -n python36jzz python=3.6
 conda activate python36jzz
 pip install tensorflow
 pip install tensorboard
-pip install scikit-learn
+pip install sklearn
+pip install scikit-image
 pip install matplotlib
 pip install opencv-python
 pip install opencv-contrib-python
