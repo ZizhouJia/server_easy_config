@@ -1,12 +1,14 @@
 conda create -y -n python27jzz python=2.7
 conda activate python27jzz
-conda install -y tensorflow 
-conda install -y tensorboard
-conda install -y scikit-learn
-conda install -y matplotlib
-conda install -y opencv
-conda install -y h5py
-conda install -y jedi
+pip install tensorflow 
+pip install  tensorboard
+pip install scikit-learn
+pip install matplotlib
+pip install opencv-python
+pip install opencv-contrib-python
+pip install h5py
+pip install jedi
+pip install rawpy
 pip install nvidia-ml-py
 pip install tensorboardX
 pip install torchvision
@@ -14,13 +16,15 @@ pip install torch
 
 conda create -y -n python36jzz python=3.6
 conda activate python36jzz
-conda install -y tensorflow
-conda install -y tensorboard
-conda install -y scikit-learn
-conda install -y matplotlib
-conda install -y opencv
-conda install -y h5py
-conda install -y jedi
+pip install tensorflow
+pip install tensorboard
+pip install scikit-learn
+pip install matplotlib
+pip install opencv-python
+pip install opencv-contrib-python
+pip install h5py
+pip install jedi
+pip install rawpy
 pip insall nvidia-ml-py3
 pip install tensorboardX
 pip install torchvision
