@@ -1,6 +1,4 @@
 channels:
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
   - default
 proxy_servers:
 "\_\_\_\_ http": http://td-dz-ls19.yz:11080
