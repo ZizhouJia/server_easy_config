@@ -11,6 +11,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
 if filereadable(expand("~/.vimrc.bundles.local"))
       source ~/.vimrc.bundles.local
 endif   
