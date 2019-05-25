@@ -1,0 +1,21 @@
+FROM nvidia/cuda:9.0-base
+WORKDIR /root
+RUN bash
+RUN apt-get update
+RUN apt-get install -y git
+RUN apt-get install -y tmux
+RUN apt-get install -y vim
+RUN apt-get install -y wget
+RUN apt-get install -y tmux
+RUN git clone  http://github.com/ZizhouJia/server_easy_config
+WORKDIR /root/server_easy_config/conda
+RUN sh download_conda.sh
+RUN sh -c '/bin/echo -e "\nyes\n\nno" | sh Anaconda3-4.4.0-Linux-x86_64.sh
+RUN source config_conda.sh
+RUN source ~/.bashrc 
+RUN source ~/.zshrc
+WORKDIR /root/server_easy_config/pip_tsinghua
+RUN source config_pip.sh
+RUN source ~/.pytorch_environment_install.sh
+
+ENTRYPOINT ["bash"]
