@@ -88,4 +88,6 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 ""窗口大小"
 let NERDTreeWinSize=25
 
-
+"flake8
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=W,F,E121,E123,E126,E226,E402,E271,E24,E704,W503,W504,E265,F401,E501,E231,E225,E303,E302,E203,W291,E261,E262,F841,W391,E101'
