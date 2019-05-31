@@ -9,6 +9,7 @@ pip install opencv-python
 pip install opencv-contrib-python
 pip install h5py
 pip install jedi
+pip install flake8
 pip install rawpy
 pip install nvidia-ml-py
 pip install tensorboardX
@@ -26,6 +27,7 @@ pip install opencv-python
 pip install opencv-contrib-python
 pip install h5py
 pip install jedi
+pip install flake8
 pip install rawpy
 pip insall nvidia-ml-py3
 pip install tensorboardX
