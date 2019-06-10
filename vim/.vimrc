@@ -19,11 +19,7 @@ set number
  "set showtabline=0
  "设置字体"
  set guifont=Monaco:h13         
- syntax on   "开启语法高亮"
- let g:solarized_termcolors=256  "solarized主题设置在终端下的设置"
- set background=dark     "设置背景色"
- colorscheme desert
- "set nowrap  "设置不折行"
+ set nowrap  "设置不折行"
  set fileformat=unix "设置以unix的格式保存文件"
  set cindent     "设置C样式的缩进格式"
  set tabstop=4   "设置table长度"
@@ -47,32 +43,6 @@ set number
 " set cursorline      "突出显示当前行"
  "set cursorcolumn        "突出显示当前列"
 
-"默认配置文件路径"
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-""打开vim时不再询问是否加载ycm_extra_conf.py配置"
-"let g:ycm_confirm_extra_conf=0
-"set completeopt=longest,menu
-"let g:ycm_seed_identifiers_with_syntax=1
-""是否在注释中也开启补全"
-"let g:ycm_complete_in_comments=1
-"let g:ycm_collect_identifiers_from_comments_and_strings = 0
-"""开始补全的字符数"
-"let g:ycm_min_num_of_chars_for_completion=2
-""补全后自动关机预览窗口"
-"let g:ycm_autoclose_preview_window_after_completion=1
-""" 禁止缓存匹配项,每次都重新生成匹配项"
-"let g:ycm_cache_omnifunc=0
-""字符串中也开启补全"
-"let g:ycm_complete_in_strings = 1
-"""离开插入模式后自动关闭预览窗口"
-""autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-""回车即选中当前项"
-""inoremap <expr> <CR>       pumvisible() ? '<C-y>' : '\<CR>'     
-"""上下左右键行为"
-""inoremap <expr> <Down>     pumvisible() ? '\<C-n>' : '\<Down>'
-""inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
-""inoremap <expr> <PageDown> pumvisible() ? '\<PageDown>\<C-p>\<C-n>' : '\<PageDown>'
-""inoremap <expr> <PageUp>   puVmvisible() ? '\<PageUp>\<C-p>\<C-n>' : '\<PageUp>'
 
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
@@ -86,6 +56,25 @@ let NERDTreeWinSize=25
 
 let g:pymode_rope=0
 let g:pymode_virtualenv_path='/home/jiazizhou/anaconda2/envs/python36jzz'
-let g:pymode_rope_completion=1
+let g:pymode_rope_completion=0
 let g:pymode_options_max_line_length=1000
 let g:pymode_options_colorcolumn=0
+let g:pymode_indent=0
+
+let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口 "
+
+map <silent> <F9> :TlistToggle<cr>
+
+"simple fold
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+
+"solarized theme
+syntax enable
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
