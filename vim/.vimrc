@@ -55,7 +55,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 let NERDTreeWinSize=25
 
 let g:pymode_rope=0
-let g:pymode_virtualenv_path='/home/jiazizhou/anaconda2/envs/python36jzz'
+let g:pymode_virtualenv_path='/home/jiazizhou/anaconda3/envs/python36jzz'
 let g:pymode_rope_completion=0
 let g:pymode_options_max_line_length=1000
 let g:pymode_options_colorcolumn=0
@@ -85,14 +85,16 @@ colorscheme solarized
 
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 "" Disable AutoComplPop.
+
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 "
+let g:neocomplcache_enable_quick_match = 1
 "" Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
         \ 'default' : '',
@@ -114,14 +116,14 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
     " " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+    "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
       " For no inserting <CR> key.
-      "return pumvisible() ? "\<C-y>" : "\<CR>"
+    return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
       "   " <TAB>: completion.
  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
       "   " <C-h>, <BS>: close popup and delete backword char.
- inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+ "inoremap <expr><CR> neocomplete#smart_close_popup()."\<CR>"
  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
       "   " Close popup by <Space>.
       "   inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
@@ -139,8 +141,19 @@ endfunction
  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
- autocmd FileType python setlocal omnifunc=python3complete#Complete
+ autocmd FileType python setlocal omnifunc=jedi#completions
  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+"jedi config
+let g:neocomplete#enable_auto_select = 0
+let g:jedi#popup_select_first=0
+set completeopt=longest,menuone
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\)\w*'
       "
       "" Enable heavy omni completion.
     if !exists('g:neocomplete#sources#omni#input_patterns')
