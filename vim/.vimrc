@@ -11,7 +11,7 @@ let mapleader = "`"
 let g:mapleader = "`"
 
 "去掉vi的一致性"
-"set nocompatible
+set nocompatible
 ""显示行号"
 set number
 " 隐藏滚动条"    
@@ -32,16 +32,20 @@ set number
  set fenc=utf-8      "文件编码"
  set backspace=2
  set mouse=a     "启用鼠标"
- "set selection=exclusive
- "set selectmode=mouse,key
+ set selection=exclusive
+ set selectmode=mouse,key
+ set clipboard+=unnamed
  set matchtime=5
  set ignorecase      "忽略大小写"
  set incsearch
  set hlsearch        "高亮搜索项"
  set expandtab     "不允许扩展table"
  set autoindent
+ set smartindent
  set whichwrap+=<,>,h,l
  set autoread
+ set noerrorbells
+
 " set cursorline      "突出显示当前行"
  "set cursorcolumn        "突出显示当前列"
  "
@@ -56,9 +60,9 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 ""窗口大小"
 let NERDTreeWinSize=25
 
-let NERDTreeMapJumpNextSibling='<C-h>'
+"let NERDTreeMapJumpNextSibling='<C-h>'
 
-let NERDTreeMapJumpPrevSibling='<C-l>'
+"let NERDTreeMapJumpPrevSibling='<C-l>'
 
 let g:pymode_rope=0
 let g:pymode_virtualenv_path='/home/jiazizhou/anaconda3/envs/python36jzz'
@@ -87,24 +91,36 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-nnoremap <C-Left> <C-w><C-h>
-nnoremap <C-Right> <C-w><C-l>
-nnoremap <C-Down> <C-w><C-j>
-nnoremap <C-Up> <C-w><C-k>
-inoremap <C-Left> <ESC><C-w><C-h>i
-inoremap <C-Right> <ESC><C-w><C-l>i
-inoremap <C-Down> <ESC><C-w><C-j>i
-inoremap <C-Up> <ESC><C-w><C-k>i
+nnoremap <silent> <C-h> <C-w><C-h>
+nnoremap <silent> <C-l> <C-w><C-l>
+nnoremap <silent> <C-j> <C-w><C-j>
+nnoremap <silent> <C-k> <C-w><C-k>
+inoremap <silent> <C-h> <ESC><C-w><C-h>i
+inoremap <silent> <C-l> <ESC><C-w><C-l>i
+inoremap <silent> <C-j> <ESC><C-w><C-j>i
+inoremap <silent> <C-k> <ESC><C-w><C-k>i
 
-inoremap <silent> <C-j> <ESC>:tabp<CR>i
-inoremap <silent> <C-k> <ESC>:tabn<CR>i
-inoremap <silent> <C-Tab> <ESC>:tabn<CR>i
-nnoremap <silent> <C-j> :tabp<CR>
-nnoremap <silent> <C-k>  :tabn<CR>
-nnoremap <silent> <C-Tab> :tabn<CR>
+nnoremap <silent> <C-Left> <C-w><C-h>
+nnoremap <silent> <C-Right> <C-w><C-l>
+nnoremap <silent> <C-Down> <C-w><C-j>
+nnoremap <silent> <C-Up> <C-w><C-k>
+inoremap <silent> <C-Left> <ESC><C-w><C-h>i
+inoremap <silent> <C-Right> <ESC><C-w><C-l>i
+inoremap <silent> <C-Down> <ESC><C-w><C-j>i
+inoremap <silent> <C-Up> <ESC><C-w><C-k>i
 
+inoremap <silent> <C-u> <ESC>:tabp<CR>i
+inoremap <silent> <C-i> <ESC>:tabn<CR>i
+nnoremap <silent> <C-u> :tabp<CR>
+nnoremap <silent> <C-i>  :tabn<CR>
 
+vnoremap <silent> <C-c> y
+vnoremap <silent> <C-x> d
+nnoremap <silent> <C-v> p
+nnoremap <silent> <C-z> u
+inoremap <silent> <C-z> <ESC>ui
 
+map <silent> <C-m> <plug>NERDCommenterToggle
 
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 "" Disable AutoComplPop.
