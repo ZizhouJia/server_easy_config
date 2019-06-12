@@ -120,6 +120,11 @@ nnoremap <silent> <C-v> p
 nnoremap <silent> <C-z> u
 inoremap <silent> <C-z> <ESC>ui
 
+"inoremap   <C-S>   <ESC>:w<CR>
+"nnoremap    <C-S>   :w<CR>
+inoremap   <C-Q>   <ESC>:wq<CR>
+nnoremap    <C-Q>   :wq<CR>
+
 map <silent> <C-m> <plug>NERDCommenterToggle
 
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
