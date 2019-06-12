@@ -7,6 +7,9 @@ if filereadable(expand("~/.vimrc.bundles"))
 	  source ~/.vimrc.bundles
 endif
 
+let mapleader = "`"
+let g:mapleader = "`"
+
 "去掉vi的一致性"
 "set nocompatible
 ""显示行号"
@@ -18,7 +21,6 @@ set number
  "隐藏顶部标签栏"
  "set showtabline=0
  "设置字体"
- set guifont=Monaco:h13         
  set nowrap  "设置不折行"
  set fileformat=unix "设置以unix的格式保存文件"
  set cindent     "设置C样式的缩进格式"
@@ -42,9 +44,9 @@ set number
  set autoread
 " set cursorline      "突出显示当前行"
  "set cursorcolumn        "突出显示当前列"
-
-
-"F2开启和关闭树"
+ "
+ 
+ "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=1
 ""显示书签"
@@ -53,6 +55,10 @@ let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 ""窗口大小"
 let NERDTreeWinSize=25
+
+let NERDTreeMapJumpNextSibling='<C-h>'
+
+let NERDTreeMapJumpPrevSibling='<C-l>'
 
 let g:pymode_rope=0
 let g:pymode_virtualenv_path='/home/jiazizhou/anaconda3/envs/python36jzz'
@@ -67,6 +73,8 @@ let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口 "
 
 map <silent> <F9> :TlistToggle<cr>
 
+map <silent> <F6> :Autopep8<cr>
+
 "simple fold
 set foldmethod=indent
 set foldlevel=99
@@ -79,6 +87,21 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+nnoremap <C-Left> <C-w><C-h>
+nnoremap <C-Right> <C-w><C-l>
+nnoremap <C-Down> <C-w><C-j>
+nnoremap <C-Up> <C-w><C-k>
+inoremap <C-Left> <ESC><C-w><C-h>i
+inoremap <C-Right> <ESC><C-w><C-l>i
+inoremap <C-Down> <ESC><C-w><C-j>i
+inoremap <C-Up> <ESC><C-w><C-k>i
+
+inoremap <silent> <C-j> <ESC>:tabp<CR>i
+inoremap <silent> <C-k> <ESC>:tabn<CR>i
+inoremap <silent> <C-Tab> <ESC>:tabn<CR>i
+nnoremap <silent> <C-j> :tabp<CR>
+nnoremap <silent> <C-k>  :tabn<CR>
+nnoremap <silent> <C-Tab> :tabn<CR>
 
 
 
@@ -159,12 +182,9 @@ let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\)\w*'
     if !exists('g:neocomplete#sources#omni#input_patterns')
         let g:neocomplete#sources#omni#input_patterns = {}
     endif
-        "let g:neocomplete#sources#omni#input_patterns.php = '[^.
-        "\t]->\h\w*\|\h\w*::'
-        ""let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:]*\t]\%(\.\|->\)'
-                "let g:neocomplete#sources#omni#input_patterns.cpp =
-                "'[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-                "
-                "" For perlomni.vim setting.
-                " https://github.com/c9s/perlomni.vim
+
 let g:neocomplete#sources#omni#input_patterns.perl ='\h\w*->\h\w*\|\h\w*::'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+
