@@ -82,7 +82,6 @@ map <silent> <F6> :Autopep8<cr>
 "simple fold
 set foldmethod=indent
 set foldlevel=99
-nnoremap <space> za
 
 "solarized theme
 syntax enable
@@ -91,15 +90,17 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-nnoremap <silent> <C-h> <C-w><C-h>
-nnoremap <silent> <C-l> <C-w><C-l>
-nnoremap <silent> <C-j> <C-w><C-j>
-nnoremap <silent> <C-k> <C-w><C-k>
-inoremap <silent> <C-h> <ESC><C-w><C-h>i
-inoremap <silent> <C-l> <ESC><C-w><C-l>i
-inoremap <silent> <C-j> <ESC><C-w><C-j>i
-inoremap <silent> <C-k> <ESC><C-w><C-k>i
+"nnoremap <silent> <C-h> <C-w><C-h>
+"nnoremap <silent> <C-l> <C-w><C-l>
+"nnoremap <silent> <C-j> <C-w><C-j>
+"nnoremap <silent> <C-k> <C-w><C-k>
+"inoremap <silent> <C-h> <ESC><C-w><C-h>i
+"inoremap <silent> <C-l> <ESC><C-w><C-l>i
+"inoremap <silent> <C-j> <ESC><C-w><C-j>i
+"inoremap <silent> <C-k> <ESC><C-w><C-k>i
 
+nnoremap <silent> <M-l> <C-w><C-h>
+nnoremap <silent> <M-Left> <C-w><C-h>
 nnoremap <silent> <C-Left> <C-w><C-h>
 nnoremap <silent> <C-Right> <C-w><C-l>
 nnoremap <silent> <C-Down> <C-w><C-j>
@@ -109,24 +110,38 @@ inoremap <silent> <C-Right> <ESC><C-w><C-l>i
 inoremap <silent> <C-Down> <ESC><C-w><C-j>i
 inoremap <silent> <C-Up> <ESC><C-w><C-k>i
 
-inoremap <silent> <C-u> <ESC>:tabp<CR>i
-inoremap <silent> <C-i> <ESC>:tabn<CR>i
-nnoremap <silent> <C-u> :tabp<CR>
-nnoremap <silent> <C-i>  :tabn<CR>
+inoremap <silent> <M-Left> <ESC>:tabp<CR>i
+inoremap <silent> <M-Right> <ESC>:tabn<CR>i
+nnoremap <silent> <M-Left> :tabp<CR>
+nnoremap <silent> <M-Right>  :tabn<CR>
 
 vnoremap <silent> <C-c> y
 vnoremap <silent> <C-x> d
 nnoremap <silent> <C-v> p
 nnoremap <silent> <C-z> u
 inoremap <silent> <C-z> <ESC>ui
+vnoremap <silent> <C-z> <ESC>
 
-"inoremap   <C-S>   <ESC>:w<CR>
-"nnoremap    <C-S>   :w<CR>
-inoremap   <C-Q>   <ESC>:wq<CR>
-nnoremap    <C-Q>   :wq<CR>
+vnoremap <silent> <C-a> <ESC>
+inoremap <silent> <C-a> <ESC><S-V>i
+nnoremap <silent> <C-a> <S-V>
+"vnoremap <silent> <M-a> <ESC>
+"inoremap <silent> <M-a> <ESC><v>i
+"nnoremap <silent> <M-a> <v>
 
-map <silent> <C-m> <plug>NERDCommenterToggle
+inoremap   <C-S>   <ESC>:w<CR>
+nnoremap    <C-S>   :w<CR>
+inoremap   <C-Q>   <ESC>:q<CR>
+nnoremap    <C-Q>   :q<CR>
 
+nnoremap j jzz
+nnoremap k kzz
+nmap <C-l> <plug>NERDCommenterToggle
+imap <C-l> <ESC><plug>NERDCommenterToggle i
+vmap <C-l> <plug>NERDCommenterToggle
+
+"map <C-l> <plug>NERDCommenterToggle
+"
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 "" Disable AutoComplPop.
 
@@ -154,7 +169,7 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 "
 "" Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+"inoremap <expr><C-l>     neocomplete#complete_common_string()
     
     " Recommended key-mappings.
     " " <CR>: close popup and save indent.
@@ -168,7 +183,7 @@ endfunction
  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
       "   " <C-h>, <BS>: close popup and delete backword char.
  "inoremap <expr><CR> neocomplete#smart_close_popup()."\<CR>"
- inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+ "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
       "   " Close popup by <Space>.
       "   inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
       "
