@@ -99,8 +99,6 @@ colorscheme solarized
 "inoremap <silent> <C-j> <ESC><C-w><C-j>i
 "inoremap <silent> <C-k> <ESC><C-w><C-k>i
 
-nnoremap <silent> <M-l> <C-w><C-h>
-nnoremap <silent> <M-Left> <C-w><C-h>
 nnoremap <silent> <C-Left> <C-w><C-h>
 nnoremap <silent> <C-Right> <C-w><C-l>
 nnoremap <silent> <C-Down> <C-w><C-j>
