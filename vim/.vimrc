@@ -23,7 +23,7 @@ set number
  "设置字体"
  set nowrap  "设置不折行"
  set fileformat=unix "设置以unix的格式保存文件"
- set cindent     "设置C样式的缩进格式"
+ "set cindent     "设置C样式的缩进格式"
  set tabstop=4   "设置table长度"
  set shiftwidth=4        "同上"
  set showmatch   "显示匹配的括号"
@@ -85,11 +85,25 @@ set foldlevel=99
 
 "solarized theme
 syntax enable
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+"set t_Co=256
+"set background=dark
+"let g:solarized_termcolors=256
+"colorscheme solarized
+let g:onedark_terminal_italics=1
+colorscheme onedark
 
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 "nnoremap <silent> <C-h> <C-w><C-h>
 "nnoremap <silent> <C-l> <C-w><C-l>
 "nnoremap <silent> <C-j> <C-w><C-j>
@@ -178,7 +192,7 @@ function! s:my_cr_function()
     return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
       "   " <TAB>: completion.
- inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
       "   " <C-h>, <BS>: close popup and delete backword char.
  "inoremap <expr><CR> neocomplete#smart_close_popup()."\<CR>"
  "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -221,4 +235,5 @@ let g:neocomplete#sources#omni#input_patterns.perl ='\h\w*->\h\w*\|\h\w*::'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
+"let g:airline_theme="onedark"
 
