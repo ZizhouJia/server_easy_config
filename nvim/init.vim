@@ -131,20 +131,24 @@ nnoremap <silent> <M-Right>  :tabn<CR>
 vnoremap <silent> <C-c> y
 vnoremap <silent> <C-x> d
 nnoremap <silent> <C-v> p
-nnoremap <silent> <C-z> u
-inoremap <silent> <C-z> <ESC>ui
-vnoremap <silent> <C-z> <ESC>
+nnoremap <silent> <C-r> u
+inoremap <silent> <C-r> <ESC>ui
+vnoremap <silent> <C-r> <ESC>
 
 vnoremap <silent> <C-a> <ESC>
-inoremap <silent> <C-a> <ESC><S-V>i
+inoremap <silent> <C-a> <ESC><Right><S-V><Down>
 nnoremap <silent> <C-a> <S-V>
-"vnoremap <silent> <M-a> <ESC>
-"inoremap <silent> <M-a> <ESC><v>i
-"nnoremap <silent> <M-a> <v>
-"
+snoremap <silent> <C-a> <ESC><S-V>
+vnoremap <silent> <C-q> <ESC>v
+
 nnoremap <silent> <C-d> i
 vnoremap <silent> <C-d> <ESC>i
 inoremap <silent> <C-d> <ESC>
+
+nnoremap <silent> <C-g> v<C-g>
+inoremap <silent> <C-g> <ESC><Right>v<C-g>
+snoremap <silent> <C-g> <ESC>
+
 
 inoremap   <silent> <C-S>   <ESC>:w<CR>
 nnoremap   <silent> <C-S>   :w<CR>
@@ -162,8 +166,9 @@ let g:airline_powerline_fonts=1
 "let g:airline_theme="onedark"
 
 set updatetime=300
-map <silent> <A-g> <Plug>(coc-definition)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+map <silent> <A-k> <Plug>(coc-definition)
+nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
+inoremap <silent> <C-k> <ESC>:call <SID>show_documentation()<CR>i
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
