@@ -70,7 +70,7 @@ let g:pymode_rope_completion=0
 let g:pymode_options_max_line_length=1000
 let g:pymode_options_colorcolumn=0
 let g:pymode_indent=0
-lef g:pymode_lint=0
+let g:pymode_doc=0
 
 let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
@@ -161,5 +161,15 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 "let g:airline_theme="onedark"
 
+set updatetime=300
 map <silent> <A-g> <Plug>(coc-definition)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
