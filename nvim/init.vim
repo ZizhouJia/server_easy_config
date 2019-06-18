@@ -14,7 +14,7 @@ let g:mapleader = "`"
 set nocompatible
 ""显示行号"
 set number
-" 隐藏滚动条"    
+" 隐藏滚动条"
  set guioptions-=r 
  set guioptions-=L
  set guioptions-=b
@@ -45,7 +45,8 @@ set number
  set whichwrap+=<,>,h,l
  set autoread
  set noerrorbells
-
+ set virtualedit=onemore
+ set guicursor=a:ver1
 " set cursorline      "突出显示当前行"
  "set cursorcolumn        "突出显示当前列"
  "
@@ -62,15 +63,15 @@ let NERDTreeWinSize=25
 
 "let NERDTreeMapJumpNextSibling='<C-h>'
 
-"let NERDTreeMapJumpPrevSibling='<C-l>'
+"let NE0RDTreeMapJumpPrevSibling='<C-l>'
 
-let g:pymode_rope=0
-let g:pymode_virtualenv_path='/home/jiazizhou/anaconda3/envs/python36jzz'
-let g:pymode_rope_completion=0
-let g:pymode_options_max_line_length=1000
-let g:pymode_options_colorcolumn=0
-let g:pymode_indent=0
-let g:pymode_doc=0
+"let g:pymode_rope=0
+"let g:pymode_virtualenv_path='/home/jiazizhou/anaconda3/envs/python36jzz'
+"let g:pymode_rope_completion=0
+"let g:pymode_options_max_line_length=1000
+"let g:pymode_options_colorcolumn=0
+"let g:pymode_indent=0
+"let g:pymode_doc=0
 
 let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
@@ -87,72 +88,61 @@ set foldlevel=99
 "solarized theme
 syntax enable
 "set t_Co=256
-"set background=dark
+"set termguicolors
+set background=dark
+let g:onedark_termcolors=16
 "let g:solarized_termcolors=256
 "colorscheme solarized
-let g:onedark_terminal_italics=1
+"let g:onedark_terminal_italics=1
 colorscheme onedark
 
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
   if (has("termguicolors"))
     set termguicolors
   endif
-endif
-"nnoremap <silent> <C-h> <C-w><C-h>
-"nnoremap <silent> <C-l> <C-w><C-l>
-"nnoremap <silent> <C-j> <C-w><C-j>
-"nnoremap <silent> <C-k> <C-w><C-k>
-"inoremap <silent> <C-h> <ESC><C-w><C-h>i
-"inoremap <silent> <C-l> <ESC><C-w><C-l>i
-"inoremap <silent> <C-j> <ESC><C-w><C-j>i
-"inoremap <silent> <C-k> <ESC><C-w><C-k>i
-
 nnoremap <silent> <C-Left> <C-w><C-h>
 nnoremap <silent> <C-Right> <C-w><C-l>
 nnoremap <silent> <C-Down> <C-w><C-j>
 nnoremap <silent> <C-Up> <C-w><C-k>
-inoremap <silent> <C-Left> <ESC><C-w><C-h>i
-inoremap <silent> <C-Right> <ESC><C-w><C-l>i
-inoremap <silent> <C-Down> <ESC><C-w><C-j>i
-inoremap <silent> <C-Up> <ESC><C-w><C-k>i
+inoremap <silent> <C-Left> <ESC>`^<C-w><C-h>i
+inoremap <silent> <C-Right> <ESC>`^<C-w><C-l>i
+inoremap <silent> <C-Down> <ESC>`^<C-w><C-j>i
+inoremap <silent> <C-Up> <ESC>`^<C-w><C-k>i
 
-inoremap <silent> <M-Left> <ESC>:tabp<CR>i
-inoremap <silent> <M-Right> <ESC>:tabn<CR>i
+"tab switch mapping
+inoremap <silent> <M-Left> <ESC>`^:tabp<CR>i
+inoremap <silent> <M-Right> <ESC>`^:tabn<CR>i
 nnoremap <silent> <M-Left> :tabp<CR>
 nnoremap <silent> <M-Right>  :tabn<CR>
 
+"save restore undo mapping
 vnoremap <silent> <C-c> y
 vnoremap <silent> <C-x> d
 nnoremap <silent> <C-v> p
 nnoremap <silent> <C-r> u
-inoremap <silent> <C-r> <ESC>ui
-vnoremap <silent> <C-r> <ESC>
+inoremap <silent> <C-r> <ESC>`^ui
 
-vnoremap <silent> <C-a> <ESC>
-inoremap <silent> <C-a> <ESC><Right><S-V><Down>
-nnoremap <silent> <C-a> <S-V>
-snoremap <silent> <C-a> <ESC><S-V>
-vnoremap <silent> <C-q> <ESC>v
+"Visual mode mapping
+vnoremap <silent> <C-d> <ESC>`^
+inoremap <silent> <C-d> <ESC>`^<S-V>
+nnoremap <silent> <C-d> <S-V>
+snoremap <silent> <C-d> <ESC>`^<S-V>
+vnoremap <silent> <C-q> <ESC>`^v
 
-nnoremap <silent> <C-d> i
-vnoremap <silent> <C-d> <ESC>i
-inoremap <silent> <C-d> <ESC>
+"insert mode mapping
+nnoremap <silent> <C-a> i
+vnoremap <silent> <C-a> <ESC>`^i
+inoremap <silent> <C-a> <ESC>`^
 
-nnoremap <silent> <C-g> v<C-g>
-inoremap <silent> <C-g> <ESC><Right>v<C-g>
-snoremap <silent> <C-g> <ESC>
+"select mode mapping
+nnoremap <silent> <C-s> v<C-g>
+inoremap <silent> <C-s> <ESC>`^v<C-g>
+vnoremap <silent> <C-s> <C-g>
+snoremap <silent> <C-s> <ESC>`^
 
-
-inoremap   <silent> <C-S>   <ESC>:w<CR>
-nnoremap   <silent> <C-S>   :w<CR>
-inoremap   <silent> <C-Q>   <ESC>:q<CR>
+"save file and close mapping
+inoremap   <silent> <C-f>   <ESC>`^:w<CR>
+nnoremap   <silent> <C-f>   :w<CR>
+inoremap   <silent> <C-Q>   <ESC>`^:q<CR>
 nnoremap   <silent> <C-Q>   :q<CR>
 
 nnoremap j jzz
@@ -166,15 +156,4 @@ let g:airline_powerline_fonts=1
 "let g:airline_theme="onedark"
 
 set updatetime=300
-map <silent> <A-k> <Plug>(coc-definition)
-nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
-inoremap <silent> <C-k> <ESC>:call <SID>show_documentation()<CR>i
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
