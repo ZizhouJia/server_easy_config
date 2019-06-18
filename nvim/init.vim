@@ -115,11 +115,25 @@ nnoremap <silent> <M-Left> :tabp<CR>
 nnoremap <silent> <M-Right>  :tabn<CR>
 
 "save restore undo mapping
-vnoremap <silent> <C-c> y
-vnoremap <silent> <C-x> d
-nnoremap <silent> <C-v> p
+vnoremap <silent> <C-c> "+y
+snoremap <silent> <C-c> <C-g>"+yi
+vnoremap <silent> <C-x> "+d
+snoremap <silent> <C-x> <C-g>"+di
+nnoremap <silent> <C-v> "+gp
+inoremap <silent> <C-v> <ESC>`^"+gpi
+snoremap <silent> <C-v> <C-g>"_d"+gpi
+
+"undo and redo
 nnoremap <silent> <C-r> u
-inoremap <silent> <C-r> <ESC>`^ui
+inoremap <silent> <C-r> <C-o>u
+nnoremap <silent> <C-y> <C-r>
+inoremap <silent> <C-y> <C-o><C-r>
+
+noremap <silent> <C-j> <C-f>
+noremap <silent> <C-k> <C-b>
+inoremap <silent> <C-j> <C-o><C-f>
+inoremap <silent> <C-k> <C-o><C-b>
+
 
 "Visual mode mapping
 vnoremap <silent> <C-d> <ESC>`^
