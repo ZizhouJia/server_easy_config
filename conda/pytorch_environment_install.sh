@@ -32,6 +32,8 @@ pip install flake8
 pip install pep8
 pip install isort
 pip install rawpy
+pip install pynvim
+pip install pylint
 pip insall nvidia-ml-py3
 pip install tensorboardX
 pip install torchvision
