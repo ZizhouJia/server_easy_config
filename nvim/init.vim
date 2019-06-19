@@ -123,9 +123,13 @@ nnoremap <silent> <C-v> "+gp
 inoremap <silent> <C-v> <ESC>`^"+gpi
 snoremap <silent> <C-v> <C-g>"_d"+gpi
 
+"remap <C-z>
+nnoremap <silent> <C-r> <C-z>
+inoremap <silent> <C-r> <C-o><c-z>
+
 "undo and redo
-nnoremap <silent> <C-r> u
-inoremap <silent> <C-r> <C-o>u
+nnoremap <silent> <C-z> u
+inoremap <silent> <C-z> <C-o>u
 nnoremap <silent> <C-y> <C-r>
 inoremap <silent> <C-y> <C-o><C-r>
 
@@ -151,7 +155,7 @@ inoremap <silent> <C-a> <ESC>`^
 nnoremap <silent> <C-s> v<C-g>
 inoremap <silent> <C-s> <ESC>`^v<C-g>
 vnoremap <silent> <C-s> <C-g>
-snoremap <silent> <C-s> <ESC>`^
+snoremap <silent> <C-s> <ESC>`^i
 
 "save file and close mapping
 inoremap   <silent> <C-f>   <ESC>`^:w<CR>
