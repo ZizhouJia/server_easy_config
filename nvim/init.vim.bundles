@@ -5,6 +5,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'scrooloose/nerdcommenter'
