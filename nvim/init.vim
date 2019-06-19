@@ -52,7 +52,7 @@ set number
  "
  
  "F2开启和关闭树"
-map <F2> :NERDTreeToggle<CR>
+map <silent> <F2> :NERDTreeTabsToggle<CR>
 let NERDTreeChDirMode=1
 ""显示书签"
 let NERDTreeShowBookmarks=1
@@ -60,6 +60,8 @@ let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 ""窗口大小"
 let NERDTreeWinSize=25
+
+"let g:nerdtree_tabs_open_on_console_startup=1
 
 "let NERDTreeMapJumpNextSibling='<C-h>'
 
@@ -160,8 +162,8 @@ snoremap <silent> <C-s> <ESC>`^i
 "save file and close mapping
 inoremap   <silent> <C-f>   <ESC>`^:w<CR>
 nnoremap   <silent> <C-f>   :w<CR>
-inoremap   <silent> <C-Q>   <ESC>`^:q<CR>
-nnoremap   <silent> <C-Q>   :q<CR>
+inoremap   <silent> <C-q>   <ESC>`^:q<CR>
+nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
 
 nnoremap j jzz
 nnoremap k kzz
