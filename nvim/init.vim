@@ -191,14 +191,15 @@ snoremap <silent> <C-s> <ESC>i
 snoremap <silent> <BackSpace> <BackSpace>i
 
 "search the work
-inoremap <silent> <C-p> <ESC>:CocList files<CR>
-nnoremap <silent> <C-p> :CocList files<CR>
-inoremap <silent> <M-p> <ESC>:CocList words<CR>
-nnoremap <silent> <M-p> :CocList words<CR>
+inoremap <silent> <M-p> <ESC>:CocList files<CR>
+nnoremap <silent> <M-p> :CocList files<CR>
+inoremap <silent> <C-p> <ESC>:CocList words<CR>
+nnoremap <silent> <C-p> :CocList words<CR>
 
 nmap <C-l> <plug>NERDCommenterToggle
-imap <C-l> <ESC><plug>NERDCommenterToggle i
+imap <C-l> <ESC><plug>NERDCommenterToggle i<Left>
 vmap <C-l> <plug>NERDCommenterToggle
+smap <C-l> <C-g><plug>NERDCommenterToggle i<Left>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
