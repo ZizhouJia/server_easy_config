@@ -7,8 +7,8 @@ if filereadable(expand("~/.config/nvim/init.vim.bundles"))
 	  source ~/.config/nvim/init.vim.bundles
 endif
 
-let mapleader = "`"
-let g:mapleader = "`"
+"let mapleader = "`"
+"let g:mapleader = "`"
 
 "去掉vi的一致性"
 set nocompatible
@@ -60,10 +60,9 @@ let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 ""窗口大小"
 let NERDTreeWinSize=25
-
+let g:nerdtree_tabs_autoclose=1
 "let g:nerdtree_tabs_open_on_console_startup=1
 
-"let NERDTreeMapJumpNextSibling='<C-h>'
 
 "let NE0RDTreeMapJumpPrevSibling='<C-l>'
 
@@ -101,28 +100,37 @@ colorscheme onedark
   if (has("termguicolors"))
     set termguicolors
   endif
+
+let CursorColumnI = 0 "the cursor column position in INSERT
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+
+"buffer switch mapping
 nnoremap <silent> <C-Left> <C-w><C-h>
 nnoremap <silent> <C-Right> <C-w><C-l>
 nnoremap <silent> <C-Down> <C-w><C-j>
 nnoremap <silent> <C-Up> <C-w><C-k>
-inoremap <silent> <C-Left> <ESC>`^<C-w><C-h>i
-inoremap <silent> <C-Right> <ESC>`^<C-w><C-l>i
-inoremap <silent> <C-Down> <ESC>`^<C-w><C-j>i
-inoremap <silent> <C-Up> <ESC>`^<C-w><C-k>i
+inoremap <silent> <C-Left> <ESC><C-w><C-h>i
+inoremap <silent> <C-Right> <ESC><C-w><C-l>i
+inoremap <silent> <C-Down> <ESC><C-w><C-j>i
+inoremap <silent> <C-Up> <ESC><C-w><C-k>i
 
 "tab switch mapping
-inoremap <silent> <M-Left> <ESC>`^:tabp<CR>i
-inoremap <silent> <M-Right> <ESC>`^:tabn<CR>i
+inoremap <silent> <M-Left> <ESC>:tabp<CR>i
+inoremap <silent> <M-Right> <ESC>:tabn<CR>i
+inoremap <silent> <A-Tab> <ESC>:tabn<CR>i
 nnoremap <silent> <M-Left> :tabp<CR>
 nnoremap <silent> <M-Right>  :tabn<CR>
+nnoremap <silent> <A-Tab>  :tabn<CR>
 
-"save restore undo mapping
+"copy paste mapping
 vnoremap <silent> <C-c> "+y
 snoremap <silent> <C-c> <C-g>"+yi
 vnoremap <silent> <C-x> "+d
 snoremap <silent> <C-x> <C-g>"+di
 nnoremap <silent> <C-v> "+gp
-inoremap <silent> <C-v> <ESC>`^"+gpi
+inoremap <silent> <C-v> <ESC>"+gpi
 snoremap <silent> <C-v> <C-g>"_d"+gpi
 
 "remap <C-z>
@@ -135,38 +143,59 @@ inoremap <silent> <C-z> <C-o>u
 nnoremap <silent> <C-y> <C-r>
 inoremap <silent> <C-y> <C-o><C-r>
 
+"save file and close mapping
+inoremap   <silent> <C-f>   <ESC>:w<CR>
+nnoremap   <silent> <C-f>   :w<CR>
+inoremap   <silent> <C-q>   <ESC>:q<CR>
+nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
+
+
+"roll mapping
+"roll one page
 noremap <silent> <C-j> <C-f>
 noremap <silent> <C-k> <C-b>
 inoremap <silent> <C-j> <C-o><C-f>
 inoremap <silent> <C-k> <C-o><C-b>
+"roll half page
+noremap <silent> <M-j> <C-d>
+noremap <silent> <M-k> <C-u>
+inoremap <silent> <M-j> <C-o><C-d>
+inoremap <silent> <M-k> <C-o><C-u>
+"roll one line
+noremap <silent> j jzz
+noremap <silent> k kzz
 
 
 "Visual mode mapping
-vnoremap <silent> <C-d> <ESC>`^
-inoremap <silent> <C-d> <ESC>`^<S-V>
+vnoremap <silent> <C-d> <ESC>
+inoremap <silent> <C-d> <ESC><S-V>
 nnoremap <silent> <C-d> <S-V>
-snoremap <silent> <C-d> <ESC>`^<S-V>
-vnoremap <silent> <C-q> <ESC>`^v
+snoremap <silent> <C-d> <ESC><S-V>
+vnoremap <silent> <A-d> <ESC>
+inoremap <silent> <A-d> <ESC>v
+nnoremap <silent> <A-d> v
+snoremap <silent> <A-d> <ESC>v
+"vnoremap <silent> <C-q> <ESC>`^<C-v>
 
 "insert mode mapping
 nnoremap <silent> <C-a> i
-vnoremap <silent> <C-a> <ESC>`^i
-inoremap <silent> <C-a> <ESC>`^
+vnoremap <silent> <C-a> <ESC>i
+inoremap <silent> <C-a> <ESC>
 
 "select mode mapping
 nnoremap <silent> <C-s> v<C-g>
-inoremap <silent> <C-s> <ESC>`^v<C-g>
+inoremap <silent> <C-s> <ESC>v<C-g>
 vnoremap <silent> <C-s> <C-g>
-snoremap <silent> <C-s> <ESC>`^i
+snoremap <silent> <C-s> <ESC>i
+"rewrite BackSpace
+snoremap <silent> <BackSpace> <BackSpace>i
 
-"save file and close mapping
-inoremap   <silent> <C-f>   <ESC>`^:w<CR>
-nnoremap   <silent> <C-f>   :w<CR>
-inoremap   <silent> <C-q>   <ESC>`^:q<CR>
-nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
+"search the work
+inoremap <silent> <C-p> <ESC>:CocList files<CR>
+nnoremap <silent> <C-p> :CocList files<CR>
+inoremap <silent> <M-p> <ESC>:CocList words<CR>
+nnoremap <silent> <M-p> :CocList words<CR>
 
-nnoremap j jzz
-nnoremap k kzz
 nmap <C-l> <plug>NERDCommenterToggle
 imap <C-l> <ESC><plug>NERDCommenterToggle i
 vmap <C-l> <plug>NERDCommenterToggle
