@@ -86,20 +86,22 @@ map <silent> <F6> :Autopep8<cr>
 set foldmethod=indent
 set foldlevel=99
 
-"solarized theme
+"theme
 syntax enable
-"set t_Co=256
-"set termguicolors
-set background=dark
-let g:onedark_termcolors=16
-"let g:solarized_termcolors=256
-"colorscheme solarized
-"let g:onedark_terminal_italics=1
-colorscheme onedark
-
-  if (has("termguicolors"))
+if (has("termguicolors"))
     set termguicolors
-  endif
+endif
+if &term=~# '^screen'
+    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+end
+colorscheme neodark
+
+
+"airline setting
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline_theme="onedark"
 
 let CursorColumnI = 0 "the cursor column position in INSERT
 autocmd InsertEnter * let CursorColumnI = col('.')
@@ -190,6 +192,16 @@ snoremap <silent> <C-s> <ESC>i
 "rewrite BackSpace
 snoremap <silent> <BackSpace> <BackSpace>i
 
+"rewrite right mouse click on normal mode to set the right click to isnert mode
+nnoremap <expr> <silent> <RightMouse> (bufname('%')=~"NERD_tree")? '<ESC>' : 'i'
+inoremap <RightMouse> <ESC>
+nnoremap <expr> <silent> <2-RightMouse> (bufname('%')=~'NERD_tree')? '<ESC>' : 'i'
+inoremap <2-RightMouse> <ESC>
+nnoremap <expr> <silent> <3-RightMouse> (bufname('%')=~'NERD_tree')? '<ESC>' : 'i'
+inoremap <3-RightMouse> <ESC>
+nnoremap <expr> <silent> <4-RightMouse> (bufname('%')=~'NERD_tree')? '<ESC>' : 'i'
+inoremap <4-RightMouse> <ESC>
+
 "search the work
 inoremap <silent> <M-p> <ESC>:CocList files<CR>
 nnoremap <silent> <M-p> :CocList files<CR>
@@ -201,9 +213,7 @@ imap <C-l> <ESC><plug>NERDCommenterToggle i<Left>
 vmap <C-l> <plug>NERDCommenterToggle
 smap <C-l> <C-g><plug>NERDCommenterToggle i<Left>
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts=1
-"let g:airline_theme="onedark"
+
 
 set updatetime=300
 
