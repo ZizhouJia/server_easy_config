@@ -202,6 +202,9 @@ imap <C-l> <C-o><plug>NERDCommenterToggle
 vmap <C-l> <plug>NERDCommenterToggle
 smap <C-l> <C-g><plug>NERDCommenterToggle i<Left>
 
+nmap <C-g> :call CocAction('jumpDefinition', 'tabe')<CR>
+imap <C-g> <C-o>:call CocAction('jumpDefinition', 'tabe')<CR>
+
 
 
 set updatetime=300
