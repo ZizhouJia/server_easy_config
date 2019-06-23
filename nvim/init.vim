@@ -147,6 +147,8 @@ nnoremap <silent> <M-h> ^
 nnoremap <silent> <M-l> $<Right>
 inoremap <silent> <M-h> <Home>
 inoremap <silent> <M-l> <End>
+snoremap <silent> <M-h> <C-g>^<C-g>
+snoremap <silent> <M-l> <C-g>$<C-g>
 
 "roll half page
 nnoremap <silent> <M-j> <C-d>zz
