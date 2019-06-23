@@ -1,7 +1,6 @@
-filetype off
+filetype off            
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 
 if filereadable(expand("~/.config/nvim/init.vim.bundles"))
 	  source ~/.config/nvim/init.vim.bundles
@@ -40,19 +39,20 @@ set number
  set incsearch
  set hlsearch        "高亮搜索项"
  set expandtab     "不允许扩展table"
- set autoindent
+ set autoindent                        
  set smartindent
  set whichwrap+=<,>,h,l
  set autoread
  set noerrorbells
  set virtualedit=onemore
  set guicursor=a:ver1
-" set cursorline      "突出显示当前行"
+ set updatetime=300
+ set cursorline      "突出显示当前行"
  "set cursorcolumn        "突出显示当前列"
  "
  
  "F2开启和关闭树"
-map <silent> <F2> :NERDTreeTabsToggle<CR>
+nmap <silent> <F2> :NERDTreeTabsToggle<CR>
 let NERDTreeChDirMode=1
 ""显示书签"
 let NERDTreeShowBookmarks=1
@@ -113,7 +113,7 @@ inoremap <silent> <M-Right> <C-o>:tabn<CR>
 inoremap <silent> <A-Tab> <C-o>:tabn<CR>i
 nnoremap <silent> <M-Left> :tabp<CR>
 nnoremap <silent> <M-Right>  :tabn<CR>
-nnoremap <silent> <A-Tab>  :tabn<CR>
+
 
 "copy paste mapping
 vnoremap <silent> <C-c> "+y
@@ -142,16 +142,17 @@ nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
 
 
 "roll mapping
-"roll one page
-noremap <silent> <C-j> <C-f>
-noremap <silent> <C-k> <C-b>
-inoremap <silent> <C-j> <C-o><C-f>
-inoremap <silent> <C-k> <C-o><C-b>
 "roll half page
-noremap <silent> <M-j> <C-d>
-noremap <silent> <M-k> <C-u>
-inoremap <silent> <M-j> <C-o><C-d>
-inoremap <silent> <M-k> <C-o><C-u>
+nnoremap <silent> <M-h> ^
+nnoremap <silent> <M-l> $<Right>
+inoremap <silent> <M-h> <Home>
+inoremap <silent> <M-l> <End>
+
+"roll half page
+nnoremap <silent> <M-j> <C-d>zz
+nnoremap <silent> <M-k> <C-u>zz
+inoremap <silent> <M-j> <C-o><C-d><C-o>zz
+inoremap <silent> <M-k> <C-o><C-u><C-o>zz
 "roll one line
 noremap <silent> j jzz
 noremap <silent> k kzz
@@ -197,15 +198,20 @@ nnoremap <silent> <M-p> :CocList files<CR>
 inoremap <silent> <C-p> <C-o>:CocList words<CR>
 nnoremap <silent> <C-p> :CocList words<CR>
 
-nmap <C-l> <plug>NERDCommenterToggle
-imap <C-l> <C-o><plug>NERDCommenterToggle
-vmap <C-l> <plug>NERDCommenterToggle
-smap <C-l> <C-g><plug>NERDCommenterToggle i<Left>
+"commenter setting
+nmap <C-_> <plug>NERDCommenterToggle
+imap <C-_> <C-o><plug>NERDCommenterToggle
+vmap <C-_> <plug>NERDCommenterToggle
+smap <C-_)> <C-g><plug>NERDCommenterToggle i<Left>
 
+"goto definenation in new table
 nmap <C-g> :call CocAction('jumpDefinition', 'tabe')<CR>
 imap <C-g> <C-o>:call CocAction('jumpDefinition', 'tabe')<CR>
 
+"complete tab setting
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 
-set updatetime=300
 
