@@ -45,9 +45,8 @@ set number
  set autoread
  set noerrorbells
  set virtualedit=onemore
- set guicursor=a:ver1
  set updatetime=300
- set cursorline      "突出显示当前行"
+ 
  "set cursorcolumn        "突出显示当前列"
  "
  
@@ -92,6 +91,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_theme="onedark"
 
+"Cursor setting
+highlight Cursor guifg=blue
+highlight iCursor guifg=blue
+set guicursor=a:ver25-Cursor
+set guicursor+=a:blinkon1
+set cursorline
+
+"Cursor function
 let CursorColumnI = 0 "the cursor column position in INSERT
 autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
@@ -110,7 +117,6 @@ inoremap <silent> <C-Up> <C-o><C-w><C-k>
 "tab switch mapping
 inoremap <silent> <M-Left> <C-o>:tabp<CR>
 inoremap <silent> <M-Right> <C-o>:tabn<CR>
-inoremap <silent> <A-Tab> <C-o>:tabn<CR>i
 nnoremap <silent> <M-Left> :tabp<CR>
 nnoremap <silent> <M-Right>  :tabn<CR>
 
@@ -121,7 +127,7 @@ snoremap <silent> <C-c> <C-g>"+yi
 vnoremap <silent> <C-x> "+d
 snoremap <silent> <C-x> <C-g>"+di
 nnoremap <silent> <C-v> "+gp
-inoremap <silent> <C-v> <C-o>"+gp
+inoremap <silent> <C-v> <C-r>+
 snoremap <silent> <C-v> <C-g>"_d"+gpi
 
 "remap <C-z>
@@ -136,25 +142,40 @@ inoremap <silent> <C-y> <C-o><C-r>
 
 "save file and close mapping
 inoremap   <silent> <C-f>   <ESC>:w<CR>
+snoremap   <silent> <C-f>   <ESC>:w<CR>
 nnoremap   <silent> <C-f>   :w<CR>
 inoremap   <silent> <C-q>   <C-o>:q<CR>
+
 nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
 
 
 "roll mapping
-"roll half page
-nnoremap <silent> <M-h> ^
-nnoremap <silent> <M-l> $<Right>
-inoremap <silent> <M-h> <Home>
+"inoremap <silent> <M-j> <Left>
+"inoremap <silent> <M-k> <Down>
+"inoremap <silent> <M-i> <Up>
+"inoremap <silent> <M-l> <Right>
+"inoremap <silent> <M-o> <End>
+"inoremap <silent> <M-N> <C-M>
+"nnoremap <silent> <M-j> <Left>
+"nnoremap <silent> <M-k> <Down>
+"nnoremap <silent> <M-i> <Up>
+"nnoremap <silent> <M-l> <Right>
+"nnoremap <silent> <M-o> $<Right>
+"snoremap <silent> <M-j> <Left>
+"snoremap <silent> <M-k> <Down>
+"snoremap <silent> <M-i> <Up>
+"snoremap <silent> <M-l> <Right>
+"snoremap <silent> <M-o> <C-g>$<C-g>
+
 inoremap <silent> <M-l> <End>
-snoremap <silent> <M-h> <C-g>^<C-g>
-snoremap <silent> <M-l> <C-g>$<C-g>
+inoremap <silent> <M-;> <End><C-M>
+
 
 "roll half page
-nnoremap <silent> <M-j> <C-d>zz
-nnoremap <silent> <M-k> <C-u>zz
-inoremap <silent> <M-j> <C-o><C-d><C-o>zz
-inoremap <silent> <M-k> <C-o><C-u><C-o>zz
+nnoremap <silent> <M-Down> <C-d>zz
+nnoremap <silent> <M-Up> <C-u>zz
+inoremap <silent> <M-Down> <C-o><C-d><C-o>zz
+inoremap <silent> <M-Up> <C-o><C-u><C-o>zz
 "roll one line
 noremap <silent> j jzz
 noremap <silent> k kzz
@@ -204,7 +225,7 @@ nnoremap <silent> <C-p> :CocList words<CR>
 nmap <C-_> <plug>NERDCommenterToggle
 imap <C-_> <C-o><plug>NERDCommenterToggle
 vmap <C-_> <plug>NERDCommenterToggle
-smap <C-_)> <C-g><plug>NERDCommenterToggle i<Left>
+smap <C-_> <C-g><plug>NERDCommenterToggle i<Left>
 
 "goto definenation in new table
 nmap <C-g> :call CocAction('jumpDefinition', 'tabe')<CR>
