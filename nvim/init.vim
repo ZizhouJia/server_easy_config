@@ -128,7 +128,7 @@ vnoremap <silent> <C-x> "+d
 snoremap <silent> <C-x> <C-g>"+di
 nnoremap <silent> <C-v> "+gp
 inoremap <silent> <C-v> <C-r>+
-snoremap <silent> <C-v> <C-g>"_d"+gpi
+snoremap <silent> <C-v> <C-g>"_di<C-r>+
 
 "remap <C-z>
 nnoremap <silent> <C-r> <C-z>
@@ -203,7 +203,7 @@ inoremap <silent> <C-s> <ESC>v<C-g>
 vnoremap <silent> <C-s> <C-g>
 snoremap <silent> <C-s> <ESC>i
 "rewrite BackSpace
-snoremap <silent> <BackSpace> <BackSpace>i
+snoremap <silent> <BackSpace> <C-g>"_di
 
 "rewrite right mouse click on normal mode to set the right click to isnert mode
 nnoremap <expr> <silent> <RightMouse> (bufname('%')=~"NERD_tree")? '<ESC>' : 'i'
