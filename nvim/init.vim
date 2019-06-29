@@ -85,12 +85,15 @@ end
 let g:onedark_terminal_italics=1
 colorscheme onedark
 
+"hi Normal ctermfg=252 ctermbg=none
 
 "airline setting
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_theme="onedark"
 
+"hi StatusLine guibg=none gui=none
+hi Normal guibg=None
 "Cursor setting
 highlight Cursor guifg=blue
 highlight iCursor guifg=blue
@@ -127,8 +130,8 @@ snoremap <silent> <C-c> <C-g>"+yi
 vnoremap <silent> <C-x> "+d
 snoremap <silent> <C-x> <C-g>"+di
 nnoremap <silent> <C-v> "+gp
-inoremap <silent> <C-v> <C-r>+
-snoremap <silent> <C-v> <C-g>"_di<C-r>+
+inoremap <silent> <C-v> <ESC>"+gpi
+snoremap <silent> <C-v> <C-g>"_di<ESC>"+gpi
 
 "remap <C-z>
 nnoremap <silent> <C-r> <C-z>
@@ -235,6 +238,3 @@ imap <C-g> <C-o>:call CocAction('jumpDefinition', 'tabe')<CR>
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-
-
