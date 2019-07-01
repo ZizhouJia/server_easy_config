@@ -9,7 +9,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Yggdroot/indentLine'
 Plugin 'ctrlpvim/vim-autopep8'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'neoclide/coc.nvim',{'do': 'yarn install --frozen-lockfile'}
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'altercation/vim-colors-solarized'

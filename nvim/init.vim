@@ -218,6 +218,7 @@ inoremap <3-RightMouse> <ESC>
 nnoremap <expr> <silent> <4-RightMouse> (bufname('%')=~'NERD_tree')? '<ESC>' : 'i'
 inoremap <4-RightMouse> <ESC>
 
+"let g:coc_force_debug = 1
 "search the work
 inoremap <silent> <M-p> <C-o>:CocList files<CR>
 nnoremap <silent> <M-p> :CocList files<CR>
