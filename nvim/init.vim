@@ -37,7 +37,7 @@ set number
  set matchtime=5
  set ignorecase      "忽略大小写"
  set incsearch
- set hlsearch        "高亮搜索项"
+ set hlsearch        "高亮搜索项"pandtab
  set expandtab     "不允许扩展table"
  set autoindent                        
  set smartindent
@@ -129,9 +129,11 @@ vnoremap <silent> <C-c> "+y
 snoremap <silent> <C-c> <C-g>"+yi
 vnoremap <silent> <C-x> "+d
 snoremap <silent> <C-x> <C-g>"+di
-nnoremap <silent> <C-v> "+gp
-inoremap <silent> <C-v> <ESC>"+gpi
-snoremap <silent> <C-v> <C-g>"_di<ESC>"+gpi
+nnoremap <silent> <C-v> "+p
+"inoremap <silent> <C-v> <ESC>"+gpi
+"snoremap <silent> <C-v> <C-g>"_di<ESC>"+gpi
+inoremap <silent> <C-v> <C-r>+
+snoremap <silent> <C-v> <C-g>"_di<C-r>+
 
 "remap <C-z>
 nnoremap <silent> <C-r> <C-z>
@@ -218,7 +220,6 @@ inoremap <3-RightMouse> <ESC>
 nnoremap <expr> <silent> <4-RightMouse> (bufname('%')=~'NERD_tree')? '<ESC>' : 'i'
 inoremap <4-RightMouse> <ESC>
 
-"let g:coc_force_debug = 1
 "search the work
 inoremap <silent> <M-p> <C-o>:CocList files<CR>
 nnoremap <silent> <M-p> :CocList files<CR>
