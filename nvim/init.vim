@@ -39,7 +39,7 @@ set number
  set incsearch
  set hlsearch        "高亮搜索项"pandtab
  set expandtab     "不允许扩展table"
- set autoindent                        
+ "set autoindent                        
  set smartindent
  set whichwrap+=<,>,h,l
  set autoread
