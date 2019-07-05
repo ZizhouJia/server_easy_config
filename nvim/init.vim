@@ -5,13 +5,12 @@ call vundle#rc()
 if filereadable(expand("~/.config/nvim/init.vim.bundles"))
 	  source ~/.config/nvim/init.vim.bundles
 endif
-
 "let mapleader = "`"
 "let g:mapleader = "`"
 
 "去掉vi的一致性"
 set nocompatible
-""显示行号"
+"显示行号"
 set number
 " 隐藏滚动条"
  set guioptions-=r 
@@ -46,7 +45,7 @@ set number
  set noerrorbells
  set virtualedit=onemore
  set updatetime=300
- 
+ set pastetoggle=<A-y>
  "set cursorcolumn        "突出显示当前列"
  "
  
@@ -101,11 +100,6 @@ set guicursor=a:ver25-Cursor
 set guicursor+=a:blinkon1
 set cursorline
 
-"Cursor function
-let CursorColumnI = 0 "the cursor column position in INSERT
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
 "buffer switch mapping
 nnoremap <silent> <C-Left> <C-w><C-h>
@@ -125,31 +119,37 @@ nnoremap <silent> <M-Right>  :tabn<CR>
 
 
 "copy paste mapping
+"predefine the paste mode and unpaste mode open function
+
 vnoremap <silent> <C-c> "+y
 snoremap <silent> <C-c> <C-g>"+yi
 vnoremap <silent> <C-x> "+d
 snoremap <silent> <C-x> <C-g>"+di
-nnoremap <silent> <C-v> "+p
 "inoremap <silent> <C-v> <ESC>"+gpi
 "snoremap <silent> <C-v> <C-g>"_di<ESC>"+gpi
-inoremap <silent> <C-v> <C-r>+
-snoremap <silent> <C-v> <C-g>"_di<C-r>+
+"inoremap <silent> <C-v> <ESC>:set paste<CR>i<C-r>+<ESC>:set nopaste<CR>i
+"snoremap <silent> <C-v> <C-g>"_d:set paste<CR>i<C-r>+<ESC>:set nopaste<CR>i
+imap <C-v> <A-y><C-r>+<A-y>
+smap <C-v> <C-g>"_di<C-v>
+nmap <silent> <C-v> i<C-v><ESC>
+
 
 "remap <C-z>
-nnoremap <silent> <C-r> <C-z>
-inoremap <silent> <C-r> <C-o><c-z>
+nnoremap <silent> <A-q> <C-z>
+inoremap <silent> <A-q> <C-o><c-z>
 
 "undo and redo
 nnoremap <silent> <C-z> u
 inoremap <silent> <C-z> <C-o>u
 nnoremap <silent> <C-y> <C-r>
-inoremap <silent> <C-y> <C-o><C-r>
+inoremap <silent> <C-y> <C-i><C-r>
 
 "save file and close mapping
 inoremap   <silent> <C-f>   <ESC>:w<CR>
 snoremap   <silent> <C-f>   <ESC>:w<CR>
 nnoremap   <silent> <C-f>   :w<CR>
 inoremap   <silent> <C-q>   <C-o>:q<CR>
+snoremap   <silent> <C-q>   <ESC>:q<CR>
 
 nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
 
@@ -188,13 +188,13 @@ noremap <silent> k kzz
 
 "Visual mode mapping
 vnoremap <silent> <C-d> <ESC>
-inoremap <silent> <C-d> <ESC><S-V>
-nnoremap <silent> <C-d> <S-V>
-snoremap <silent> <C-d> <ESC><S-V>
-vnoremap <silent> <A-d> <ESC>
-inoremap <silent> <A-d> <ESC>v
-nnoremap <silent> <A-d> v
-snoremap <silent> <A-d> <ESC>v
+inoremap <silent> <C-d> <ESC><S-V><C-g>
+nnoremap <silent> <C-d> <S-V><C-g>
+snoremap <silent> <C-d> <ESC><S-V><C-g>
+"vnoremap <silent> <A-d> <ESC>
+"inoremap <silent> <A-d> <ESC>v
+"nnoremap <silent> <A-d> v
+"snoremap <silent> <A-d> <ESC>v
 "vnoremap <silent> <C-q> <ESC>`^<C-v>
 
 "insert mode mapping
@@ -240,3 +240,11 @@ imap <C-g> <C-o>:call CocAction('jumpDefinition', 'tabe')<CR>
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+
+"Cursor function for solve the differnece between normal and insert
+let CursorColumnI = 0 "the cursor column position in INSERT
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0,col('.')+1) | endif
+

@@ -35,7 +35,7 @@ pip install rawpy
 pip install pynvim
 pip install pylint
 pip insall nvidia-ml-py3
-pip install tensorboardX
+pip install tensorboardX=1.8
 pip install torchvision
 pip install torch
 
