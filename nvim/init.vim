@@ -47,8 +47,9 @@ set number
  set updatetime=300
  set pastetoggle=<A-y>
  "set cursorcolumn        "突出显示当前列"
- "
- 
+ set timeoutlen=1000 ttimeoutlen=0 "无延迟切换"
+
+
  "F2开启和关闭树"
 nmap <silent> <F2> :NERDTreeTabsToggle<CR>
 let NERDTreeChDirMode=1
