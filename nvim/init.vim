@@ -4,10 +4,13 @@ call vundle#rc()
 
 if filereadable(expand("~/.config/nvim/init.vim.bundles"))
 	  source ~/.config/nvim/init.vim.bundles
+
 endif
+
 "let mapleader = "`"
 "let g:mapleader = "`"
-
+"let mapleader = "`"
+"
 "去掉vi的一致性"
 set nocompatible
 "显示行号"
@@ -19,6 +22,7 @@ set number
  "隐藏顶部标签栏"
  "set showtabline=0
  "设置字体"
+ "
  set nowrap  "设置不折行"
  set fileformat=unix "设置以unix的格式保存文件"
  "set cindent     "设置C样式的缩进格式"
@@ -52,6 +56,7 @@ set number
 
  "F2开启和关闭树"
 nmap <silent> <F2> :NERDTreeTabsToggle<CR>
+
 let NERDTreeChDirMode=1
 ""显示书签"
 let NERDTreeShowBookmarks=1
@@ -93,15 +98,14 @@ let g:airline_powerline_fonts=1
 let g:airline_theme="onedark"
 
 "hi StatusLine guibg=none gui=none
-hi Normal guibg=None
+"hi Normal guibg=None
 "Cursor setting
 highlight Cursor guifg=blue
 highlight iCursor guifg=blue
 set guicursor=a:ver25-Cursor
 set guicursor+=a:blinkon1
 set cursorline
-
-
+inoremap <silent> <C-w>q <C-w-q>
 "buffer switch mapping
 nnoremap <silent> <C-Left> <C-w><C-h>
 nnoremap <silent> <C-Right> <C-w><C-l>
@@ -142,8 +146,8 @@ inoremap <silent> <A-q> <C-o><c-z>
 "undo and redo
 nnoremap <silent> <C-z> u
 inoremap <silent> <C-z> <C-o>u
-nnoremap <silent> <C-y> <C-r>
-inoremap <silent> <C-y> <C-i><C-r>
+"nnoremap <silent> <C-y> <C-r>
+inoremap <silent> <C-r> <C-o><C-r>
 
 "save file and close mapping
 inoremap   <silent> <C-f>   <ESC>:w<CR>
@@ -175,6 +179,10 @@ nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
 
 inoremap <silent> <M-l> <End>
 inoremap <silent> <M-;> <End><C-M>
+inoremap <silent> <Insert> <Home>
+inoremap <silent> <Delete> <End>
+nnoremap <silent> <Insert> ^
+nnoremap <silent> <Delete> $<Right>
 
 
 "roll half page
@@ -187,11 +195,7 @@ noremap <silent> j jzz
 noremap <silent> k kzz
 
 
-"Visual mode mapping
-vnoremap <silent> <C-d> <ESC>
-inoremap <silent> <C-d> <ESC><S-V><C-g>
-nnoremap <silent> <C-d> <S-V><C-g>
-snoremap <silent> <C-d> <ESC><S-V><C-g>
+
 "vnoremap <silent> <A-d> <ESC>
 "inoremap <silent> <A-d> <ESC>v
 "nnoremap <silent> <A-d> v
@@ -204,11 +208,27 @@ vnoremap <silent> <C-a> <ESC>i
 inoremap <silent> <C-a> <ESC>
 
 "select mode mapping
-nnoremap <silent> <C-s> v<C-g>
-inoremap <silent> <C-s> <ESC>v<C-g>
-vnoremap <silent> <C-s> <C-g>
+nnoremap <silent> <C-e> v<C-g>
+inoremap <silent> <C-e> <ESC>v<C-g>
+vnoremap <silent> <C-e> <C-g>
+snoremap <silent> <C-e> <ESC>i
+
+"Select line mode mapping
+vnoremap <silent> <C-d> <ESC>
+inoremap <silent> <C-d> <ESC><S-V><C-g>
+nnoremap <silent> <C-d> <S-V><C-g>
+snoremap <silent> <C-d> <ESC>i
+
+
+"Select word mode mapping
+nnoremap <silent> <C-s> viw<C-g>
+inoremap <silent> <C-s> <ESC>viw<C-g>
+vnoremap <silent> <C-s> iw<C-g>
 snoremap <silent> <C-s> <ESC>i
-"rewrite BackSpace
+
+
+
+"rewrite BackSpace in select mode
 snoremap <silent> <BackSpace> <C-g>"_di
 
 "rewrite right mouse click on normal mode to set the right click to isnert mode
@@ -241,6 +261,8 @@ imap <C-g> <C-o>:call CocAction('jumpDefinition', 'tabe')<CR>
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+set statusline^=%{coc#status()}
 
 
 "Cursor function for solve the differnece between normal and insert
