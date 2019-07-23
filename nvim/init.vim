@@ -146,6 +146,8 @@ inoremap <silent> <A-q> <C-o><c-z>
 "undo and redo
 nnoremap <silent> <C-z> u
 inoremap <silent> <C-z> <C-o>u
+snoremap <silent> <C-z> <ESC>ui
+vnoremap <silent> <C-z> <ESC>ui
 "nnoremap <silent> <C-y> <C-r>
 inoremap <silent> <C-r> <C-o><C-r>
 
