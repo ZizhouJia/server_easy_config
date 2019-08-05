@@ -52,6 +52,7 @@ set number
  set pastetoggle=<A-y>
  "set cursorcolumn        "突出显示当前列"
  set timeoutlen=1000 ttimeoutlen=0 "无延迟切换"
+ set noswapfile
 
 
  "F2开启和关闭树"
