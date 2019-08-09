@@ -12,9 +12,9 @@ endif
 "let mapleader = "`"
 "
 "去掉vi的一致性"
-set nocompatible
+ set nocompatible
 "显示行号"
-set number
+ set number
 " 隐藏滚动条"
  set guioptions-=r 
  set guioptions-=L
@@ -180,7 +180,7 @@ nmap   <expr> <silent> <C-q>   (bufname('%')=~"NERD_tree")? '<F2>' : ':q<CR>'
 "snoremap <silent> <M-l> <Right>
 "snoremap <silent> <M-o> <C-g>$<C-g>
 
-inoremap <silent> <M-l> <End>
+
 inoremap <silent> <M-;> <End><C-M>
 inoremap <silent> <Insert> <Home>
 inoremap <silent> <Delete> <End>
@@ -250,6 +250,11 @@ nnoremap <silent> <M-p> :CocList files<CR>
 inoremap <silent> <C-p> <C-o>:CocList words<CR>
 nnoremap <silent> <C-p> :CocList words<CR>
 
+nnoremap <silent> <C-j> n
+nnoremap <silent> <C-k> N
+inoremap <silent> <C-j> <C-o>n
+inoremap <silent> <C-k> <C-o>N
+
 "commenter setting
 nmap <C-_> <plug>NERDCommenterToggle
 imap <C-_> <C-o><plug>NERDCommenterToggle
@@ -267,6 +272,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 set statusline^=%{coc#status()}
 
+"vim multiple cursors setting
 
 "Cursor function for solve the differnece between normal and insert
 let CursorColumnI = 0 "the cursor column position in INSERT
