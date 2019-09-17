@@ -1,3 +1,3 @@
 sudo apt update
-sudo apt install nodejs
+curl -sL install-node.now.sh/lts | bash
 sudo apt install npm
